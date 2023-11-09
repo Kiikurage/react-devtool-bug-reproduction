@@ -3,13 +3,16 @@ import {useState, useSyncExternalStore} from "react";
 
 
 function unsubscribe() {
+    console.log('unsubscribe');
 }
 
 function subscribe(callback: () => void): () => void {
+    console.log('subscribe');
     return unsubscribe
 }
 
 function getState() {
+    console.log('getState');
 }
 
 window.addEventListener('DOMContentLoaded', () => {
