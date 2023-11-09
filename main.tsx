@@ -1,25 +1,26 @@
 import {createRoot} from "react-dom/client";
-import {useState} from "react";
-import {Provider, useSelector} from "react-redux";
-import {configureStore, createSlice} from "@reduxjs/toolkit";
+import {useState, useSyncExternalStore} from "react";
+
+
+function unsubscribe() {
+}
+
+function subscribe(callback: () => void): () => void {
+    return unsubscribe
+}
+
+function getState() {
+}
 
 window.addEventListener('DOMContentLoaded', () => {
     createRoot(document.getElementById("root")!)
         .render(
-            <Provider store={configureStore({
-                reducer: createSlice({
-                    name: "SampleReducer",
-                    initialState: {},
-                    reducers: {}
-                }).reducer
-            })}>
-                <TestComponent/>
-            </Provider>
+            <TestComponent/>
         );
 })
 
 function TestComponent() {
-    useSelector(state => 0);
+    useSyncExternalStore(subscribe, getState)
 
     const [x, setX] = useState(0);
 
